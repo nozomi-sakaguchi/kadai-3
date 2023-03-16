@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :books, only: [:new, :create, :index, :show, :edit]
-  resources :users, only: [:show, :edit, :desutroy]
+  resources :users, only: [:show,:create, :index, :edit, :destroy]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
