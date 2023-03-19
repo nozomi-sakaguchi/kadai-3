@@ -17,10 +17,11 @@
       <% @books.each do |book| %>
         <tbody>
           <tr>
-            <td><%= image_tag @user.get_profile_image(80,80) %></td>
-            <td><%= link_to user_path(book.id) do %>
+            <td><%= image_tag book.get_profile_image(80,80) %></td>
+            <td><%= link_to books_path do %>
                   <%= book.title %>
-                  <% end %></td>
+                <% end %>
+            </td>
             <td><%= book.body %></td>
             <td colspan="3"></td>
           </tr>
