@@ -1,11 +1,15 @@
 <div class="container px-5 mt-3">
   <div class="row mt-3">
+
+    <div>
+      <%= flash[:notice] %>
+    </div>
+
     <%= render 'users/list', user: @user %>
 
     <div class="col-md-8 ml-5 offset-mb-1">
       <h2>Book detail</h2>
       <table>
-
         <tbody>
 
             <td>
@@ -20,13 +24,13 @@
             </td>
             <td><%= @books.body %></td>
             <td>
-              <%= link_to  edit_book_path(@books), class: "btn btn-success btn-sm"  do %>
+              <%= link_to  edit_book_path(@books.id), class: "btn btn-success btn-sm"  do %>
                 Edit
               <% end %>
             </td>
             <td>
               <% if @books.user == current_user %>
-                <%=link_to "Destroy", book_path(@books.id) , method: :delete, class: "btn btn-danger btn-sm"  %>
+                <%=link_to "Destroy", book_path(@books) , method: :delete, class: "btn btn-danger btn-sm"  %>
               <% end %>
             </td>
           </tr>

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
   def show
+    @user = User.find(params[:id])
+    @books = @user.books
     @book = Book.new
-    @books =Book.all
-    @user = current_user
   end
 
   def destroy
@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     @book.destroy
     redirect_to book_path
   end
-
 
   def index
     @user = current_user
@@ -23,6 +22,7 @@ class UsersController < ApplicationController
     @book = Book.new(books_params)
     @book.user_id = current_user.id
     @book.save
+    flash[:notice] = "You have created book successfully."
     redirect_to books_path(@book)
   end
 
