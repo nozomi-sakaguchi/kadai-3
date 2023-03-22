@@ -1,10 +1,22 @@
-<div class="container px-5 mt-3">
-  <div class="row mt-3">
-     <%= render 'users/list', user: @user %>
+<%= flash[:notice] %><br>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-    <div class="col-md-8 ml-5 offset-mb-1">
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+
+    <%= render 'users/list', user: @user, book: @book %>
+
+    <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <table class="table ">
+      <table class="table">
         <thead>
           <tr>
             <th></th>
@@ -17,7 +29,11 @@
       <% @books.each do |book| %>
         <tbody>
           <tr>
-            <td><%= image_tag book.get_profile_image(80,80) %></td>
+            <td><%= link_to user_path(book.user) do %>
+                  <%= image_tag book.user.get_profile_image(80,80) %>
+                <% end %>
+            </td>
+
             <td><%= link_to book_path(book.id) do %>
                   <%= book.title %>
                 <% end %>

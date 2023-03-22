@@ -1,2 +1,38 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<%= flash[:notice] %><br>
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class ="container">
+  <div class="row">
+     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <%= form_with model: @user do |f| %>
+        <div class= "form-user">
+          <label for ="user_name">Name</label><br>
+          <%= f.text_field :name, autofocus: true, name_length:2..20%>
+        </div>
+        <div class= "form-user">
+          <label for = "user_Image">Image</label><br>
+          <%= f.file_field :profile_image, accept: "image/*" %>
+        </div>
+        <div class ="form-user">
+          <lable for = "user_Introduction">Introduction</lable><br>
+          <%= f.text_field :introduction ,autofocus: true %>
+        </div>
+        <div class="form-user">
+          <%= f.submit "Update User", class: "btn btn-secondary btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
